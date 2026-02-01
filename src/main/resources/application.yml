@@ -30,12 +30,8 @@ spring:
             - id: inventory-service
               uri: lb://golden-harvest-inventory
               predicates:
-                - Path=/api/discard/**
-                - Path=/api/items
-                - Path=/api/inbound
-                - Path=/api/outbound
-                - Path=/api/admin/items
-                - Path=/api/price-policy
+                - Path=/api/discard/**,/api/items,/api/inbound,/api/outbound,/api/admin/items,/api/price-policy
+               
 
             - id: sales-service
               uri: lb://golden-harvest-sales
