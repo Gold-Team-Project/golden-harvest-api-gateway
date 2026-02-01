@@ -1,0 +1,79 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: api-gateway
+  profiles:
+    active: local
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: auth-service
+              uri: lb://golden-harvest-auth
+              predicates:
+                - Path=/api/auth/**
+
+            - id: inquiry-service
+              uri: lb://golden-harvest-custom-support
+              predicates:
+                - Path=/api/inquiries/**
+
+            - id: master-service
+              uri: lb://golden-harvest-master-data
+              predicates:
+                - Path=/api/master-data/**
+
+            - id: inventory-service
+              uri: lb://golden-harvest-inventory
+              predicates:
+                - Path=/api/discard/**
+                - Path=/api/items
+                - Path=/api/inbound
+                - Path=/api/outbound
+                - Path=/api/admin/items
+                - Path=/api/price-policy
+
+            - id: sales-service
+              uri: lb://golden-harvest-sales
+              predicates:
+                - Path=/api/sales/**,/api/cart/**
+
+            - id: user-service
+              uri: lb://golden-harvest-user
+              predicates:
+                - Path=/api/admin/user/**,/api/user/**
+
+            - id: notification-service
+              uri: lb://golden-harvest-notification
+              predicates:
+                - Path=/api/notifications/**
+
+            - id: ai-service
+              uri: http://localhost:8001
+              predicates:
+                - Path=/api/**
+              filters:
+                - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    gateway:
+      enabled: true
