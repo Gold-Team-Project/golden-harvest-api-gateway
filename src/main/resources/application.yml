@@ -46,7 +46,12 @@ spring:
             - id: notification-service
               uri: lb://golden-harvest-notification
               predicates:
-                - Path=/api/notifications/**
+                - Path=/api/notifications/**,
+
+            - id: purchases-service
+              uri: lb://golden-harvest-purchases
+              predicates:
+                - Path=/api/purchase/**
 
             - id: ai-service
               uri: http://localhost:8001
