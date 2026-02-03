@@ -13,43 +13,43 @@ spring:
         webflux:
           routes:
             - id: auth-service
-              uri: lb://golden-harvest-auth
+              uri: http://auth-service:8081
               predicates:
-                - Path=/api/auth/**
+                - Path=/api/auth/**;
 
-            - id: inquiry-service
-              uri: lb://golden-harvest-custom-support
+            - id: customer-support-service
+              uri: http://customer-support-service:8088
               predicates:
-                - Path=/api/inquiries/**, /api/admin/inquiries['
+                - Path=/api/inquiries/**, /api/admin/inquiries/**
 
-            - id: master-service
-              uri: lb://golden-harvest-master-data
+            - id: master-data-service
+              uri: http://master-data-service:8085
               predicates:
                 - Path=/api/master-data/**
 
             - id: inventory-service
-              uri: lb://golden-harvest-inventory
+              uri: http://inventory-service:8084
               predicates:
                 - Path=/api/discard/**,/api/items,/api/inbound,/api/outbound,/api/admin/items,/api/price-policy
 
 
             - id: sales-service
-              uri: lb://golden-harvest-sales
+              uri: http://sales-service:8083
               predicates:
                 - Path=/api/sales/**,/api/cart/**
 
             - id: user-service
-              uri: lb://golden-harvest-user
+              uri: http://user-service:8082
               predicates:
                 - Path=/api/admin/user/**,/api/user/**
 
             - id: notification-service
-              uri: lb://golden-harvest-notification
+              uri: http://notification-service:8087
               predicates:
                 - Path=/api/notifications/**,
 
             - id: purchases-service
-              uri: lb://golden-harvest-purchases
+              uri: http://purchases-service:8086
               predicates:
                 - Path=/api/purchase/**
 
