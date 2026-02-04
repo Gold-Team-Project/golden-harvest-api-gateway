@@ -20,7 +20,7 @@ spring:
             - id: customer-support-service
               uri: http://customer-support-service:8088
               predicates:
-                - Path=/api/inquiries/**, /api/admin/inquiries/**
+                - Path=/api/inquiries/**,/api/admin/inquiries/**
 
             - id: master-data-service
               uri: http://master-data-service:8085
@@ -71,3 +71,12 @@ management:
   endpoint:
     gateway:
       enabled: true
+
+logging:
+  level:
+    # Gateway의 라우팅 매칭 과정을 상세히 출력
+    org.springframework.cloud.gateway: TRACE
+    # HTTP 요청/응답 헤더 및 바디 관련 디버깅 (선택 사항)
+    org.springframework.http.server.reactive: DEBUG
+    # 프로젝트 자체 필터나 로직 확인용
+    com.teamgold.apigateway: DEBUG
