@@ -15,7 +15,7 @@ spring:
             - id: auth-service
               uri: http://auth-service:8081
               predicates:
-                - Path=/api/auth/**;
+                - Path=/api/auth/**
 
             - id: customer-support-service
               uri: http://customer-support-service:8088
