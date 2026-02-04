@@ -53,12 +53,12 @@ spring:
               predicates:
                 - Path=/api/purchase/**
 
-            - id: ai-service
-              uri: http://localhost:8001
-              predicates:
-                - Path=/api/**
-              filters:
-                - StripPrefix=1
+#            - id: ai-service
+#              uri: http://localhost:8001
+#              predicates:
+#                - Path=/api/**
+#              filters:
+#                - StripPrefix=1
 
 eureka:
   client:
