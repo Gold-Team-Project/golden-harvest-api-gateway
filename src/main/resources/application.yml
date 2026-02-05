@@ -30,7 +30,7 @@ spring:
             - id: inventory-service
               uri: http://inventory-service:8084
               predicates:
-                - Path=/api/discard/**,/api/items,/api/inbound,/api/outbound,/api/admin/items,/api/price-policy
+                - Path=/api/discard/**,/api/items/**,/api/inbound,/api/outbound,/api/admin/items,/api/price-policy
 
 
             - id: sales-service
