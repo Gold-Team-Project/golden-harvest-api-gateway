@@ -23,6 +23,7 @@ public class JwtAuthGlobalFilter implements GlobalFilter, Ordered {
     private final JwtVerifier jwtTokenVerifier;
 
     private static final List<String> PERMIT_PREFIX = List.of(
+            "/api/ai",
             "/api/auth/",
             "/actuator",
             "/swagger-ui",
